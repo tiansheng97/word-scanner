@@ -1,0 +1,60 @@
+<html>
+<textarea id = "myfile"></textarea>
+<button id="inputs" onclick="myfunction()">submit</button>
+<p id="output"></p>
+<p id="output2"></p>
+<script>
+function myfunction(){
+var input1 = document.getElementById("myfile").value;
+function testnumber(item) {
+    if ((/^\d/).test(item) == true)
+        return item;
+    else
+        return 0;
+}
+function testsymbol(item) {
+    if ((/\W/).test(item) == true) {
+        var pend = item.split(/\B(?!\s+)/);
+        return pend;    
+        
+    }
+    else
+        return 0;
+}
+function testid(item) {
+     if ((/\w(?!\d)/).test(item) == true) {
+        var id = 'id'
+        return id;
+    }
+    else
+        return 0;
+}
+
+console.log(input1);
+
+var text = [];
+var token1 = input1.split(/\b\s*(?!$)/);
+document.getElementById("output").innerHTML = token1;
+console.log(token1);
+
+
+for (i = 0; i <= token1.length-1; i++) {
+    var temp = testid(token1[i]);
+    if (temp != false)
+        text.push(temp);
+    temp = testnumber(token1[i]);
+     if (temp != false)
+         text.push(temp);
+    temp = testsymbol(token1[i]);
+    if (temp != false)
+        text.push(temp);
+}
+document.getElementById("output2").innerHTML = text;
+
+
+
+
+}
+</script>
+
+</html>
